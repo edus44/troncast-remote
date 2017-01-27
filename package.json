@@ -4,6 +4,8 @@
   "description": "Remote app of Troncast",
   "main": "index.js",
   "scripts": {
+      "dev": "vue build src/main.js -o",
+    "build": "vue build src/main.js --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,5 +24,15 @@
   "bugs": {
     "url": "https://github.com/edus44/troncast-remote/issues"
   },
-  "homepage": "https://github.com/edus44/troncast-remote#readme"
+  "homepage": "https://github.com/edus44/troncast-remote#readme",
+  "dependencies": {
+    "vue": "^2.1.10"
+  },
+  "devDependencies": {
+    "eslint": "^3.14.1",
+    "eslint-config-gigigo-standard": "^0.1.9",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "vue-cli": "^2.8.0"
+  }
 }
