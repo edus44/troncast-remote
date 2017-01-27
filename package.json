@@ -1,0 +1,26 @@
+{
+  "name": "troncast-remote",
+  "version": "0.0.1",
+  "description": "Remote app of Troncast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edus44/troncast-remote.git"
+  },
+  "keywords": [
+    "electron",
+    "vuejs",
+    "vue",
+    "troncast",
+    "chromecast"
+  ],
+  "author": "Eduardo Hidalgo H",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edus44/troncast-remote/issues"
+  },
+  "homepage": "https://github.com/edus44/troncast-remote#readme"
+}
