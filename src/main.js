@@ -7,6 +7,26 @@ new Vue({
 })
 
 
-import socketIo from 'socket.io-client'
+// import io from 'socket.io-client'
 
-const io = socketIo('http://127.0.0.1:13370')
+// const socket = io('http://127.0.0.1:13370/remote')
+
+// socket.on('connect',()=>{
+//     console.log('emited')
+//     socket.emit('screen:hello',{hola:true})
+// })
+
+// socket.on('screen:hello-back',()=>{
+//     console.log('heard you')
+// })
+// 
+
+import bus from './bus'
+
+bus.emit('screen:hello')
+
+bus.on('screen:hello-back',()=>{
+    console.log('heard you')
+})
+
+window.so = bus
