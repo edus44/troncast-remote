@@ -31,7 +31,7 @@
     "vuex": "^2.1.1"
   },
   "devDependencies": {
-    "cross-env": "^3.0.0",
+    "cross-env": "^3.1.4",
     "css-loader": "^0.25.0",
     "eslint": "^3.14.1",
     "eslint-config-gigigo-standard": "^0.1.9",
