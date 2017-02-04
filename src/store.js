@@ -10,6 +10,7 @@ const state = {
     socketConnected: false,
     channels: [],
     slots: [],
+    channelForms:{}
 }
 
 const mutations = {
@@ -24,6 +25,14 @@ const mutations = {
     },
     SET_SLOTS(state,value){
         state.slots = value && value.length ? value : []
+    },
+    SET_CHANNEL_FORM(state,{pointer,form}){
+        let pointerStr = `${pointer.position}@${pointer.channelId}`
+        Vue.set(state.channelForms,pointerStr,form)
+    },
+    CLEAR_CHANNEL_FORM(state,pointer){
+        let pointerStr = `${pointer.position}@${pointer.channelId}`
+        Vue.delete(state.channelForms,pointerStr)
     }
 }
 
@@ -34,12 +43,19 @@ const actions = {
     selectChannel(store,payload){
         socket.emit('screen:select-channel',payload)
     },
+    configureChannel(store,pointer){
+        socket.emit('channel:configure',pointer)
+    },
+    sendFormResult(store,{pointer,result}){
+        socket.emit('channel:configure',pointer,result)
+    },
     addSlot(){
         socket.emit('screen:add-slot')
     },
     requestData(){
         socket.emit('repository:request-list')
         socket.emit('screen:request-slots')
+        socket.emit('channel:request-configure-form')
     }
 }
 
@@ -50,6 +66,12 @@ socket.on('repository:list',list=>{
 })
 socket.on('screen:slots',list=>{
     store.commit('SET_SLOTS',list)
+})
+socket.on('channel:configure-form',(pointer,form)=>{
+    if (form)
+        store.commit('SET_CHANNEL_FORM',{pointer,form})
+    else
+        store.commit('CLEAR_CHANNEL_FORM',pointer)
 })
 socket.on('connect',()=>{
     store.commit('SET_SOCKET_CONNECTED',true)

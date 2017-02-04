@@ -11,10 +11,7 @@ import ChannelSlotBoard from './ChannelSlotBoard.vue'
 
 export default {
     name: 'App',
-    components:{HeaderBar,ChannelSlotBoard},
-    created(){
-        this.$store.dispatch('requestData')
-    }
+    components:{HeaderBar,ChannelSlotBoard}
 }
 </script>
 

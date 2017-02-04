@@ -29,10 +29,7 @@ export default {
     computed:mapState(['channels']),
     methods:{
         select(channel){
-            this.$store.dispatch('selectChannel',{
-                channelId: channel && channel.id,
-                position: this.position
-            })
+            this.$emit('select',channel)
         }
     }
 }
