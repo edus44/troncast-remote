@@ -43,10 +43,11 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true,
     port: 13372,
+    host:'0.0.0.0',
     proxy : [
       {
         path: '/socket.io',
-        target: 'http://localhost:13370/',
+        target: 'http://127.0.0.1:13370/',
         ws: true
       }
     ]
