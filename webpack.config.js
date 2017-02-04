@@ -42,7 +42,14 @@ module.exports = {
     publicPath:'/',
     historyApiFallback: true,
     noInfo: true,
-    port: 13372
+    port: 13372,
+    proxy : [
+      {
+        path: '/socket.io',
+        target: 'http://localhost:13370/',
+        ws: true
+      }
+    ]
   },
   performance: {
     hints: false
