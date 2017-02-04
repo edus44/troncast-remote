@@ -17,6 +17,14 @@ module.exports = {
         loader: 'vue-loader'
       },
       {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(scss|sass)$/,
+        loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {

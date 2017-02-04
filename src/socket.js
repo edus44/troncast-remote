@@ -1,8 +1,7 @@
 
 import io from 'socket.io-client'
 
-const debug = require('debug')('tc:bus')
-
+const debug = require('debug')('tc:socket')
 const socket = io('http://127.0.0.1:13370/remote')
 
 
