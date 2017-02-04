@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 const state = {
     localPath: '',
-    socketStatus: '',
+    socketConnected: false,
     channels: [],
     slots: [],
 }
@@ -16,8 +16,8 @@ const mutations = {
     SET_LOCAL_PATH(state,value){
         state.localPath = value || ''
     },
-    SET_SOCKET_STATUS(state,value){
-        state.socketStatus = value
+    SET_SOCKET_CONNECTED(state,value){
+        state.socketConnected = value
     },
     SET_CHANNELS(state,value){
         state.channels = value && value.length ? value : []
@@ -30,6 +30,9 @@ const mutations = {
 const actions = {
     removeSlot(store,payload){
         socket.emit('screen:remove-slot',payload)
+    },
+    selectChannel(store,payload){
+        socket.emit('screen:select-channel',payload)
     },
     addSlot(){
         socket.emit('screen:add-slot')
@@ -47,6 +50,13 @@ socket.on('repository:list',list=>{
 })
 socket.on('screen:slots',list=>{
     store.commit('SET_SLOTS',list)
+})
+socket.on('connect',()=>{
+    store.commit('SET_SOCKET_CONNECTED',true)
+    store.dispatch('requestData')
+})
+socket.on('disconnect',()=>{
+    store.commit('SET_SOCKET_CONNECTED',false)
 })
 
 
