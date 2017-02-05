@@ -1,7 +1,7 @@
 <template>
     <section class="header-bar level">
         <h1 class="level-item">
-            Troncast
+            Troncast Remote
         </h1>
         <div class="level-item">
             <span v-if="socketConnected" class="tag is-success">Connected</span>
