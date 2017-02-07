@@ -8,6 +8,7 @@ Vue.use(Vuex)
 const state = {
     localPath: '',
     socketConnected: false,
+    disposition:{},
     channels: [],
     slots: [],
     channelForms:{}
@@ -25,6 +26,9 @@ const mutations = {
     },
     SET_SLOTS(state,value){
         state.slots = value && value.length ? value : []
+    },
+    SET_DISPOSITION(state,value){
+        state.disposition = value
     },
     SET_CHANNEL_FORM(state,{pointer,form}){
         let pointerStr = `${pointer.position}@${pointer.channelId}`
@@ -52,9 +56,13 @@ const actions = {
     addSlot(){
         socket.emit('screen:add-slot')
     },
+    toggleDisposition(store,param){
+        socket.emit('screen:toggle-disposition',param)
+    },
     requestData(){
         socket.emit('repository:request-list')
         socket.emit('screen:request-slots')
+        socket.emit('screen:request-disposition')
         socket.emit('channel:request-configure-form')
     }
 }
@@ -66,6 +74,9 @@ socket.on('repository:list',list=>{
 })
 socket.on('screen:slots',list=>{
     store.commit('SET_SLOTS',list)
+})
+socket.on('screen:disposition',disposition=>{
+    store.commit('SET_DISPOSITION',disposition)
 })
 socket.on('channel:configure-form',(pointer,form)=>{
     if (form)
